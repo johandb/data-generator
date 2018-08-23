@@ -1,4 +1,4 @@
-package nl.ict.psa.utils.generator.randomizers;
+package generator.randomizers;
 
 /**
  * Interface for the Randomizers

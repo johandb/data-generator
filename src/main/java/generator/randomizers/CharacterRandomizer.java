@@ -1,8 +1,8 @@
-package nl.ict.psa.utils.generator.randomizers;
+package generator.randomizers;
+
+import generator.config.GeneratorParameters;
 
 import java.util.Random;
-
-import nl.ict.psa.utils.generator.config.GeneratorParameters;
 
 public class CharacterRandomizer implements Randomizer<Character> {
 

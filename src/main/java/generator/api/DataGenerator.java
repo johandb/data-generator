@@ -1,14 +1,16 @@
-package nl.ict.psa.utils.generator.api;
+package generator.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import nl.ict.psa.utils.generator.config.GeneratorParameters;
-import nl.ict.psa.utils.generator.enums.StringType;
-import nl.ict.psa.utils.generator.randomizers.*;
-import nl.ict.psa.utils.generator.reflection.ReflectionUtils;
+import generator.config.GeneratorParameters;
+import generator.enums.StringType;
+import generator.randomizers.*;
+import generator.reflection.ReflectionUtils;
 
 import java.lang.reflect.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This class is used to generate random test data for a Java class.

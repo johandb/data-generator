@@ -1,7 +1,7 @@
-package nl.ict.psa.utils.generator.randomizers;
+package generator.randomizers;
 
-import nl.ict.psa.utils.generator.api.DataGenerator;
-import nl.ict.psa.utils.generator.config.GeneratorParameters;
+import generator.api.DataGenerator;
+import generator.config.GeneratorParameters;
 
 import java.util.ArrayList;
 import java.util.List;

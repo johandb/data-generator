@@ -1,0 +1,15 @@
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\reflection\ReflectionUtils.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\StringRandomizer.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\config\GeneratorParameters.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\api\DataGenerator.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\IntegerRandomizer.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\enums\StringType.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\LongRandomizer.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\EnumRandomizer.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\BooleanRandomizer.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\DateRandomizer.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\FloatRandomizer.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\CharacterRandomizer.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\DoubleRandomizer.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\Randomizer.java
+C:\Workspace\IntelliJ\data-generator\src\main\java\generator\randomizers\ListRandomizer.java

@@ -1,0 +1,7 @@
+generator\reflection\ReflectionUtilsTest.class
+generator\api\DataGeneratorTest.class
+generator\model\Status.class
+generator\randomizers\RandomizerTest.class
+generator\model\Address.class
+generator\model\Company.class
+generator\model\Person.class

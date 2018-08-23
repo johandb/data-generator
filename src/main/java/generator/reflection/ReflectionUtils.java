@@ -1,4 +1,4 @@
-package nl.ict.psa.utils.generator.reflection;
+package generator.reflection;
 
 import java.io.File;
 import java.lang.reflect.Field;
