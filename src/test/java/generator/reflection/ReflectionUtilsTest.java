@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 
 import org.junit.Test;
 
-import nl.ict.psa.utils.generator.model.Person;
+import generator.model.Person;
 
 /**
  * Created by johan.den.boer on 28-7-2017.

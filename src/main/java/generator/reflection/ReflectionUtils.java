@@ -1,9 +1,12 @@
-package generator.reflection;
+package nl.ict.psa.utils.generator.reflection;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,12 +22,28 @@ public class ReflectionUtils {
 		return cls.getDeclaredMethods();
 	}
 
+	public static List<Method> getAllMethods(final Class<?> cls) {
+		List<Method> methods = new ArrayList<>();
+		for (Class<?> c = cls; c != null; c = c.getSuperclass()) {
+			methods.addAll(Arrays.asList(c.getDeclaredMethods()));
+		}
+		return methods;
+	}
+
 	public static Field[] getPublicFields(final Class<?> cls) {
 		return cls.getFields();
 	}
 
 	public static Field[] getDeclaredFields(final Class<?> cls) {
 		return cls.getDeclaredFields();
+	}
+
+	public static List<Field> getAllFields(Class<?> type) {
+		List<Field> fields = new ArrayList<>();
+		for (Class<?> c = type; c != null; c = c.getSuperclass()) {
+			fields.addAll(Arrays.asList(c.getDeclaredFields()));
+		}
+		return fields;
 	}
 
 	public static boolean isPrivateField(final Field field) {
@@ -75,7 +94,7 @@ public class ReflectionUtils {
 	}
 
 	public static Method getMethodByname(final Class<?> cls, final String methodName) {
-		Method[] methods = ReflectionUtils.getDeclaredMethods(cls);
+		List<Method> methods = getAllMethods(cls);
 		for(Method m : methods) {
 			if(m.getName().equals(methodName)) {
 				return m;
@@ -97,4 +116,47 @@ public class ReflectionUtils {
 	private static boolean isInstantiable(final Class<?> cls) {
 		return !cls.isInterface() && !Modifier.isAbstract(cls.getModifiers());
 	}
+
+	public static Class[] getClassesInPackage(String pckgname) {
+		File directory = getPackageDirectory(pckgname);
+		if (!directory.exists()) {
+			throw new IllegalArgumentException("Could not get directory resource for package " + pckgname + ".");
+		}
+
+		return getClassesInPackage(pckgname, directory);
+	}
+
+	private static Class[] getClassesInPackage(String pckgname, File directory) {
+		List<Class> classes = new ArrayList<Class>();
+		for (String filename : directory.list()) {
+			if (filename.endsWith(".class")) {
+				String classname = buildClassname(pckgname, filename);
+				try {
+					classes.add(Class.forName(classname));
+				} catch (ClassNotFoundException e) {
+					System.err.println("Error creating class " + classname);
+				}
+			}
+		}
+		return classes.toArray(new Class[classes.size()]);
+	}
+
+	private static String buildClassname(String pckgname, String filename) {
+		return pckgname + '.' + filename.replace(".class", "");
+	}
+
+	private static File getPackageDirectory(String pckgname) {
+		ClassLoader cld = Thread.currentThread().getContextClassLoader();
+		if (cld == null) {
+			throw new IllegalStateException("Can't get class loader.");
+		}
+
+		URL resource = cld.getResource(pckgname.replace('.', '/'));
+		if (resource == null) {
+			throw new RuntimeException("Package " + pckgname + " not found on classpath.");
+		}
+
+		return new File(resource.getFile());
+	}
+
 }

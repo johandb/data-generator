@@ -1,7 +1,7 @@
 package generator.api;
 
-import nl.ict.psa.utils.generator.model.Company;
-import nl.ict.psa.utils.generator.model.Person;
+import generator.model.Company;
+import generator.model.Person;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

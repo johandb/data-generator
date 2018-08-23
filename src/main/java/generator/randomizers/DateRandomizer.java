@@ -1,9 +1,9 @@
-package generator.randomizers;
+package nl.ict.psa.utils.generator.randomizers;
 
 import java.util.Date;
 import java.util.Random;
 
-import generator.config.GeneratorParameters;
+import nl.ict.psa.utils.generator.config.GeneratorParameters;
 
 public class DateRandomizer implements Randomizer<Date> {
 

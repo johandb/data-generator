@@ -1,9 +1,9 @@
-package generator.randomizers;
+package nl.ict.psa.utils.generator.randomizers;
 
 import java.util.Random;
 
-import generator.config.GeneratorParameters;
-import generator.enums.StringType;
+import nl.ict.psa.utils.generator.config.GeneratorParameters;
+import nl.ict.psa.utils.generator.enums.StringType;
 
 public class StringRandomizer implements Randomizer<String> {
 

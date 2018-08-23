@@ -1,4 +1,4 @@
-package nl.ict.psa.utils.generator.model;
+package generator.model;
 
 public enum Status {
 

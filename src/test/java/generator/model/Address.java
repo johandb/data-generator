@@ -1,4 +1,4 @@
-package nl.ict.psa.utils.generator.model;
+package generator.model;
 
 /**
  * Created by johan.den.boer on 28-7-2017.

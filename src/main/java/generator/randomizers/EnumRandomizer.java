@@ -1,4 +1,4 @@
-package generator.randomizers;
+package nl.ict.psa.utils.generator.randomizers;
 
 import java.util.Random;
 

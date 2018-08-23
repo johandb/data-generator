@@ -1,20 +1,14 @@
-package generator.api;
+package nl.ict.psa.utils.generator.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import generator.config.GeneratorParameters;
-import generator.enums.StringType;
-import generator.randomizers.*;
+import nl.ict.psa.utils.generator.config.GeneratorParameters;
+import nl.ict.psa.utils.generator.enums.StringType;
 import nl.ict.psa.utils.generator.randomizers.*;
-import generator.reflection.ReflectionUtils;
+import nl.ict.psa.utils.generator.reflection.ReflectionUtils;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.*;
+import java.util.*;
 
 /**
  * This class is used to generate random test data for a Java class.
@@ -88,7 +82,8 @@ public final class DataGenerator
             }
             final T object = cls.newInstance();
             this.objectMap.put(cls.getSimpleName(), object);
-            Field[] fields = ReflectionUtils.getDeclaredFields(cls);
+            List<Field> fields = ReflectionUtils.getAllFields(cls);
+            //Field[] fields = ReflectionUtils.getDeclaredFields(cls);
             for(Field field : fields) {
                 if (!GeneratorParameters.excludedFields.contains(field.getName())) {
                     String typeName = field.getType().getSimpleName();
@@ -120,10 +115,24 @@ public final class DataGenerator
                                     if (returnType instanceof ParameterizedType) {
                                         final Type elementType = ((ParameterizedType) returnType).getActualTypeArguments()[0];
                                         final ListRandomizer r = new ListRandomizer();
-                                        final Class<?> clazz = Class.forName(elementType.getTypeName());
-                                        List<?> l = r.getValue(clazz);
-                                        List<Object> l1 = (List<Object>) method.invoke(object, null);
-                                        l1.addAll(l);
+                                        Class<?> clazz = Class.forName(elementType.getTypeName());
+                                        int modifiers = clazz.getModifiers();
+                                        boolean b = Modifier.isAbstract(modifiers);
+                                        if(b) {
+                                            String packageName = clazz.getPackage().getName();
+                                            Class[] classes = ReflectionUtils.getClassesInPackage(packageName);
+                                            for (Class c : classes) {
+                                                if(clazz.getSimpleName().equals(c.getSuperclass().getSimpleName())) {
+                                                    List<?> l = r.getValue(c);
+                                                    List<Object> l1 = (List<Object>) method.invoke(object, null);
+                                                    l1.addAll(l);
+                                                }
+                                            }
+                                        } else {
+                                            List<?> l = r.getValue(clazz);
+                                            List<Object> l1 = (List<Object>) method.invoke(object, null);
+                                            l1.addAll(l);
+                                        }
                                     }
                                 }
                             }
@@ -175,6 +184,11 @@ public final class DataGenerator
         public DataGeneratorBuilder()
         {
             GeneratorParameters.excludedFields.clear();
+        }
+
+        public DataGeneratorBuilder withCollectionSize(final int size) {
+            GeneratorParameters.MAX_COLLECTION__SIZE = size;
+            return this;
         }
 
         public DataGeneratorBuilder withIntegerRange(final int low, final int high)

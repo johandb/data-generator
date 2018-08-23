@@ -10,7 +10,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import generator.config.GeneratorParameters;
-import nl.ict.psa.utils.generator.model.Status;
+import generator.model.Status;
 
 public class RandomizerTest {
 

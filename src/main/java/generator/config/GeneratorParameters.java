@@ -1,9 +1,9 @@
-package generator.config;
+package nl.ict.psa.utils.generator.config;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import generator.enums.StringType;
+import nl.ict.psa.utils.generator.enums.StringType;
 
 public class GeneratorParameters {
 
