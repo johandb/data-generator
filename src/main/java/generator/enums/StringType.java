@@ -1,4 +1,4 @@
-package nl.ict.psa.utils.generator.enums;
+package generator.enums;
 
 public enum StringType {
 	LOWER, UPPER, BOTH

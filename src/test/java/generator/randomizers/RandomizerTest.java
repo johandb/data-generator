@@ -1,4 +1,4 @@
-package nl.ict.psa.utils.generator.randomizers;
+package generator.randomizers;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -9,7 +9,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import nl.ict.psa.utils.generator.config.GeneratorParameters;
+import generator.config.GeneratorParameters;
 import nl.ict.psa.utils.generator.model.Status;
 
 public class RandomizerTest {

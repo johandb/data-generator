@@ -1,17 +1,17 @@
-package nl.ict.psa.utils.generator.api;
+package generator.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import nl.ict.psa.utils.generator.config.GeneratorParameters;
-import nl.ict.psa.utils.generator.enums.StringType;
+import generator.config.GeneratorParameters;
+import generator.enums.StringType;
+import generator.randomizers.*;
 import nl.ict.psa.utils.generator.randomizers.*;
-import nl.ict.psa.utils.generator.reflection.ReflectionUtils;
+import generator.reflection.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

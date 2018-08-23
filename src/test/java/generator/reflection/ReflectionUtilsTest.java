@@ -1,4 +1,4 @@
-package nl.ict.psa.utils.generator.reflection;
+package generator.reflection;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

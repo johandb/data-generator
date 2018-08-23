@@ -1,4 +1,4 @@
-package nl.ict.psa.utils.generator.api;
+package generator.api;
 
 import nl.ict.psa.utils.generator.model.Company;
 import nl.ict.psa.utils.generator.model.Person;

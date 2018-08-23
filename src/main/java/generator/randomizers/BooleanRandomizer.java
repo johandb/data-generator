@@ -1,4 +1,4 @@
-package nl.ict.psa.utils.generator.randomizers;
+package generator.randomizers;
 
 public class BooleanRandomizer implements Randomizer<Boolean> {
 
