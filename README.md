@@ -8,3 +8,5 @@ Company company = r.random(Company.class);
 
 If you want to exclude fields do it like this<br>
 DataGenerator generator = new DataGenerator.DataGeneratorBuilder().withExcludeField("name", "dateBirth").build();
+
+See the GeneratorParameters class for setting more options.
