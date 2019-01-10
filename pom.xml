@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>nl.frog</groupId>
-    <artifactId>frog-data-generator</artifactId>
+    <artifactId>data-generator</artifactId>
     <version>3.0.0</version>
     <packaging>jar</packaging>
 
