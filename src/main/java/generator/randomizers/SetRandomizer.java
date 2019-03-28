@@ -3,19 +3,19 @@ package generator.randomizers;
 import generator.api.DataGenerator;
 import generator.config.GeneratorParameters;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
-public class ListRandomizer {
+public class SetRandomizer {
 
-    public ListRandomizer() {
+    public SetRandomizer() {
     }
 
-    public <T> List<T> getValue(final Class<T> cls) {
+    public <T> Set<T> getValue(final Class<T> cls) {
         final Random random = new Random();
         final int collectionSize = random.nextInt(GeneratorParameters.MAX_COLLECTION__SIZE);
-        final List<T> values = new ArrayList<>();
+        final Set<T> values = new HashSet<>();
         for (int i = 0; i < collectionSize; i++) {
             try {
                 final String type = cls.getSimpleName().toLowerCase();
@@ -29,9 +29,10 @@ public class ListRandomizer {
                     DataGenerator.getInstance().getObjectMap().remove(cls.getSimpleName());
                 }
             } catch (final Exception e) {
-                throw new IllegalArgumentException("Invalid argument for ListRandomizer " + cls.getSimpleName());
+                throw new IllegalArgumentException("Invalid argument for SetRandomizer " + cls.getSimpleName());
             }
         }
         return values;
     }
+
 }

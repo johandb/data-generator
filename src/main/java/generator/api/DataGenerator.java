@@ -17,13 +17,11 @@ import java.util.Map;
  * <p>
  * johan.den.boer on 28-7-2017.
  */
-public final class DataGenerator
-{
+public final class DataGenerator {
     private final Map<String, Object> objectMap = new HashMap<>();
     private static final Map<String, Randomizer<?>> randomizerMap = new HashMap<>();
 
-    static
-    {
+    static {
         randomizerMap.put("int", new IntegerRandomizer());
         randomizerMap.put("integer", new IntegerRandomizer());
         randomizerMap.put("string", new StringRandomizer());
@@ -39,29 +37,24 @@ public final class DataGenerator
 
     private static DataGenerator instance;
 
-    private DataGenerator(final DataGeneratorBuilder builder)
-    {
+    private DataGenerator(final DataGeneratorBuilder builder) {
         this.reset();
         instance = this;
     }
 
-    public static DataGenerator getInstance()
-    {
+    public static DataGenerator getInstance() {
         return instance;
     }
 
-    public static Map<String, Randomizer<?>> getRandomizerMap()
-    {
+    public static Map<String, Randomizer<?>> getRandomizerMap() {
         return randomizerMap;
     }
 
-    public Map<String, Object> getObjectMap()
-    {
+    public Map<String, Object> getObjectMap() {
         return this.objectMap;
     }
 
-    public void reset()
-    {
+    public void reset() {
         this.objectMap.clear();
     }
 
@@ -71,8 +64,7 @@ public final class DataGenerator
      * @param cls
      * @return
      */
-    public <T> T random(final Class<T> cls)
-    {
+    public <T> T random(final Class<T> cls) {
         final T object = createRandomData(cls);
         return object;
     }
@@ -86,7 +78,7 @@ public final class DataGenerator
             this.objectMap.put(cls.getSimpleName(), object);
             List<Field> fields = ReflectionUtils.getAllFields(cls);
             //Field[] fields = ReflectionUtils.getDeclaredFields(cls);
-            for(Field field : fields) {
+            for (Field field : fields) {
                 if (!GeneratorParameters.excludedFields.contains(field.getName())) {
                     String typeName = field.getType().getSimpleName();
                     String fieldName = field.getName();
@@ -98,7 +90,17 @@ public final class DataGenerator
                         }
                     } else {
                         Method method = ReflectionUtils.getSetterMethod(cls, fieldName);
-                        if (typeName.toLowerCase().equals("list")) {
+                        if (typeName.toLowerCase().equals("set")) {
+                            if (ReflectionUtils.isSetter(method)) {
+                                final Type setType = method.getGenericParameterTypes()[0];
+                                if (setType instanceof ParameterizedType) {
+                                    final Type elementType = ((ParameterizedType) setType).getActualTypeArguments()[0];
+                                    final SetRandomizer r = new SetRandomizer();
+                                    final Class<?> clazz = Class.forName(elementType.getTypeName());
+                                    method.invoke(object, r.getValue(clazz));
+                                }
+                            }
+                        } else if (typeName.toLowerCase().equals("list")) {
                             // No setter method for list try the getter method
                             if (method == null) {
                                 method = ReflectionUtils.getGetterMethod(cls, fieldName);
@@ -120,11 +122,11 @@ public final class DataGenerator
                                         Class<?> clazz = Class.forName(elementType.getTypeName());
                                         int modifiers = clazz.getModifiers();
                                         boolean b = Modifier.isAbstract(modifiers);
-                                        if(b) {
+                                        if (b) {
                                             String packageName = clazz.getPackage().getName();
                                             Class[] classes = ReflectionUtils.getClassesInPackage(packageName);
                                             for (Class c : classes) {
-                                                if(clazz.getSimpleName().equals(c.getSuperclass().getSimpleName())) {
+                                                if (clazz.getSimpleName().equals(c.getSuperclass().getSimpleName())) {
                                                     List<?> l = r.getValue(c);
                                                     List<Object> l1 = (List<Object>) method.invoke(object, null);
                                                     l1.addAll(l);
@@ -157,7 +159,7 @@ public final class DataGenerator
                 }
             }
             return object;
-        } catch(final Exception e) {
+        } catch (final Exception e) {
             throw new IllegalArgumentException("Failed to generator data for class " + cls.getSimpleName());
         }
     }
@@ -168,8 +170,7 @@ public final class DataGenerator
      * @param cls
      * @return
      */
-    public <T> String randomAsJson(final Class<T> cls)
-    {
+    public <T> String randomAsJson(final Class<T> cls) {
         final T object = createRandomData(cls);
         final Gson gson = new GsonBuilder().create();
         return gson.toJson(object);
@@ -180,11 +181,9 @@ public final class DataGenerator
      *
      * @author johan.den.boer
      */
-    public static class DataGeneratorBuilder
-    {
+    public static class DataGeneratorBuilder {
 
-        public DataGeneratorBuilder()
-        {
+        public DataGeneratorBuilder() {
             GeneratorParameters.excludedFields.clear();
         }
 
@@ -193,64 +192,54 @@ public final class DataGenerator
             return this;
         }
 
-        public DataGeneratorBuilder withIntegerRange(final int low, final int high)
-        {
+        public DataGeneratorBuilder withIntegerRange(final int low, final int high) {
             GeneratorParameters.MIN_RANGE_INTEGER = low;
             GeneratorParameters.MAX_RANGE_INTEGER = high;
             return this;
         }
 
-        public DataGeneratorBuilder withLongRange(final long low, final long high)
-        {
+        public DataGeneratorBuilder withLongRange(final long low, final long high) {
             GeneratorParameters.MIN_RANGE_LONG = low;
             GeneratorParameters.MAX_RANGE_LONG = high;
             return this;
         }
 
-        public DataGeneratorBuilder withFloatRange(final float low, final float high)
-        {
+        public DataGeneratorBuilder withFloatRange(final float low, final float high) {
             GeneratorParameters.MIN_RANGE_FLOAT = low;
             GeneratorParameters.MAX_RANGE_FLOAT = high;
             return this;
         }
 
-        public DataGeneratorBuilder withDoubleRange(final double low, final double high)
-        {
+        public DataGeneratorBuilder withDoubleRange(final double low, final double high) {
             GeneratorParameters.MIN_RANGE_DOUBLE = low;
             GeneratorParameters.MAX_RANGE_DOUBLE = high;
             return this;
         }
 
-        public DataGeneratorBuilder withStringLength(final int length)
-        {
+        public DataGeneratorBuilder withStringLength(final int length) {
             GeneratorParameters.STRING_LENGTH = length;
             return this;
         }
 
-        public DataGeneratorBuilder withDateRange(final int low, final int high)
-        {
+        public DataGeneratorBuilder withDateRange(final int low, final int high) {
             GeneratorParameters.MIN_RANGE_DATE = low;
             GeneratorParameters.MAX_RANGE_DATE = high;
             return this;
         }
 
-        public DataGeneratorBuilder withStringCase(final StringType stringCase)
-        {
+        public DataGeneratorBuilder withStringCase(final StringType stringCase) {
             GeneratorParameters.STRING_CASE = stringCase;
             return this;
         }
 
-        public DataGeneratorBuilder withExcludeField(final String... fieldNames)
-        {
-            for (final String fieldName : fieldNames)
-            {
+        public DataGeneratorBuilder withExcludeField(final String... fieldNames) {
+            for (final String fieldName : fieldNames) {
                 GeneratorParameters.excludedFields.add(fieldName);
             }
             return this;
         }
 
-        public DataGenerator build()
-        {
+        public DataGenerator build() {
             return new DataGenerator(this);
         }
     }
