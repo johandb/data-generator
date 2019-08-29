@@ -8,6 +8,7 @@ import generator.randomizers.*;
 import generator.reflection.ReflectionUtils;
 
 import java.lang.reflect.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,21 @@ public final class DataGenerator {
 
     public void reset() {
         this.objectMap.clear();
+    }
+
+    /**
+     * Get a random list of objects
+     *
+     * @param cls
+     * @param count
+     */
+    public <T> List<T> randomList(final Class<T> cls, final int count) {
+        List<T> dataList = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            T data = random(cls);
+            dataList.add(data);
+        }
+        return dataList;
     }
 
     /**
