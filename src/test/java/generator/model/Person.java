@@ -2,12 +2,12 @@ package generator.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by johan.den.boer on 28-7-2017.
  */
-public class Person
-{
+public class Person {
     private int id;
     private String name;
     private Address address;
@@ -20,134 +20,117 @@ public class Person
     private char c;
     private List<String> emailAdressen;
     private List<Address> addresses;
+    private UUID uid;
 
-    public Person()
-    {
+    public Person() {
     }
 
-    public int getId()
-    {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(final int id)
-    {
+    public void setId(final int id) {
         this.id = id;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return this.name;
     }
 
-    public void setName(final String name)
-    {
+    public void setName(final String name) {
         this.name = name;
     }
 
-    public Address getAddress()
-    {
+    public Address getAddress() {
         return this.address;
     }
 
-    public void setAddress(final Address address)
-    {
+    public void setAddress(final Address address) {
         this.address = address;
     }
 
-    public float getSalary()
-    {
+    public float getSalary() {
         return this.salary;
     }
 
-    public void setSalary(final float salary)
-    {
+    public void setSalary(final float salary) {
         this.salary = salary;
     }
 
-    public Integer getAge()
-    {
+    public Integer getAge() {
         return this.age;
     }
 
-    public void setAge(final Integer age)
-    {
+    public void setAge(final Integer age) {
         this.age = age;
     }
 
-    public Date getDateBirth()
-    {
+    public Date getDateBirth() {
         return this.dateBirth;
     }
 
-    public void setDateBirth(final Date dateBirth)
-    {
+    public void setDateBirth(final Date dateBirth) {
         this.dateBirth = dateBirth;
     }
 
-    public boolean isActive()
-    {
+    public boolean isActive() {
         return this.isActive;
     }
 
-    public void setActive(final boolean isActive)
-    {
+    public void setActive(final boolean isActive) {
         this.isActive = isActive;
     }
 
-    public long getLvalue()
-    {
+    public long getLvalue() {
         return this.lvalue;
     }
 
-    public void setLvalue(final long lvalue)
-    {
+    public void setLvalue(final long lvalue) {
         this.lvalue = lvalue;
     }
 
-    public Status getStatus()
-    {
+    public Status getStatus() {
         return this.status;
     }
 
-    public void setStatus(final Status status)
-    {
+    public void setStatus(final Status status) {
         this.status = status;
     }
 
-    public char getC()
-    {
+    public char getC() {
         return this.c;
     }
 
-    public void setC(final char c)
-    {
+    public void setC(final char c) {
         this.c = c;
     }
 
-    public List<String> getEmailAdressen()
-    {
+    public List<String> getEmailAdressen() {
         return this.emailAdressen;
     }
 
-    public void setEmailAdressen(final List<String> emailAdressen)
-    {
+    public void setEmailAdressen(final List<String> emailAdressen) {
         this.emailAdressen = emailAdressen;
     }
 
-    public List<Address> getAddresses()
-    {
+    public List<Address> getAddresses() {
         return this.addresses;
     }
 
-    public void setAddresses(final List<Address> addresses)
-    {
+    public void setAddresses(final List<Address> addresses) {
         this.addresses = addresses;
     }
 
+    public UUID getUid() {
+        return uid;
+    }
+
+    public void setUid(UUID uid) {
+        this.uid = uid;
+    }
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Person [id=" + this.id + ", name=" + this.name + ", address=" + this.address + ", salary=" + this.salary + ", age=" + this.age + ", dateBirth=" + this.dateBirth + ", isActive=" + this.isActive + ", lvalue=" + this.lvalue + ", status=" + this.status + ", c=" + this.c + ", emailAdressen=" + this.emailAdressen + "]";
     }
 }

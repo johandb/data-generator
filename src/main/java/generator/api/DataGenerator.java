@@ -34,6 +34,7 @@ public final class DataGenerator {
         randomizerMap.put("character", new CharacterRandomizer());
         randomizerMap.put("boolean", new BooleanRandomizer());
         randomizerMap.put("short", new IntegerRandomizer());
+        randomizerMap.put("uuid", new UUIDRandomizer());
     }
 
     private static DataGenerator instance;
