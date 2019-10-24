@@ -21,7 +21,7 @@ public class DataGeneratorTest {
     }
 
     @Test
-    public void testCompanyToJson() throws Exception {
+    public void testCompanyData() throws Exception {
         final DataGenerator r = new DataGenerator.DataGeneratorBuilder().build();
         final Company company = r.random(Company.class);
         assertNotNull(company);
