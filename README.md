@@ -7,7 +7,7 @@ DataGenerator r = new DataGenerator.DataGeneratorBuilder().build();<br>
 Company company = r.random(Company.class);
 
 # If you want create a list of 5 companies with random data
-List<<Company> companies = r.randomList(Company.class, 5);
+List<Company> companies = r.randomList(Company.class, 5);
 
 # If you want to exclude fields do it like this<br>
 DataGenerator generator = new DataGenerator.DataGeneratorBuilder().withExcludeField("name", "dateBirth").build();
