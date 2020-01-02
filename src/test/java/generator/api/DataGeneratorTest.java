@@ -21,7 +21,7 @@ public class DataGeneratorTest {
     }
 
     @Test
-    public void testCompanyToJson() throws Exception {
+    public void testCompanyData() throws Exception {
         final DataGenerator r = new DataGenerator.DataGeneratorBuilder().build();
         final Company company = r.random(Company.class);
         assertNotNull(company);
@@ -38,7 +38,7 @@ public class DataGeneratorTest {
     }
 
     @Test
-    public void testPersonDatageneratorWithExcludingFields() {
+    public void testPersonDataGeneratorWithExcludingFields() {
         final DataGenerator generator = new DataGenerator.DataGeneratorBuilder().withExcludeField("name", "dateBirth").build();
         final Person p = generator.random(Person.class);
         assertNotNull(p);
