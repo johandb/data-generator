@@ -38,7 +38,7 @@ public class DataGeneratorTest {
     }
 
     @Test
-    public void testPersonDatageneratorWithExcludingFields() {
+    public void testPersonDataGeneratorWithExcludingFields() {
         final DataGenerator generator = new DataGenerator.DataGeneratorBuilder().withExcludeField("name", "dateBirth").build();
         final Person p = generator.random(Person.class);
         assertNotNull(p);
