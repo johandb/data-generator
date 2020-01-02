@@ -69,6 +69,7 @@ public final class DataGenerator {
     public <T> List<T> randomList(final Class<T> cls, final int count) {
         List<T> dataList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
+            this.objectMap.clear();
             T data = random(cls);
             dataList.add(data);
         }
