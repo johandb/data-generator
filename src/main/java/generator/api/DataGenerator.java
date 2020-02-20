@@ -30,6 +30,7 @@ public final class DataGenerator {
         randomizerMap.put("double", new DoubleRandomizer());
         randomizerMap.put("float", new FloatRandomizer());
         randomizerMap.put("date", new DateRandomizer());
+        randomizerMap.put("instant", new InstantRandomizer());
         randomizerMap.put("char", new CharacterRandomizer());
         randomizerMap.put("character", new CharacterRandomizer());
         randomizerMap.put("boolean", new BooleanRandomizer());

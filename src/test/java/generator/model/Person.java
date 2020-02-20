@@ -1,5 +1,6 @@
 package generator.model;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -21,6 +22,7 @@ public class Person {
     private List<String> emailAdressen;
     private List<Address> addresses;
     private UUID uid;
+    private Instant stamp;
 
     public Person() {
     }
@@ -127,6 +129,14 @@ public class Person {
 
     public void setUid(UUID uid) {
         this.uid = uid;
+    }
+
+    public Instant getStamp() {
+        return stamp;
+    }
+
+    public void setStamp(Instant stamp) {
+        this.stamp = stamp;
     }
 
     @Override
