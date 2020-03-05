@@ -2,13 +2,24 @@ package generator.api;
 
 import generator.model.Company;
 import generator.model.Person;
+import generator.randomizers.EvenValueRandomizer;
+import generator.randomizers.Randomizer;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
 public class DataGeneratorTest {
+
+    @Test
+    public void testReplaceRandomizer() throws Exception {
+        DataGenerator.setRandomizer("int", new EvenValueRandomizer());
+        Map<String, Randomizer<?>> randomizerMap = DataGenerator.getRandomizerMap();
+        Object randomizer = randomizerMap.get("int");
+        assertTrue(randomizer instanceof EvenValueRandomizer);
+    }
 
     @Test
     public void testPersonDataGenerator() throws Exception {

@@ -53,6 +53,10 @@ public final class DataGenerator {
         return randomizerMap;
     }
 
+    public static void setRandomizer(String type, Randomizer randomizer) {
+        randomizerMap.put(type, randomizer);
+    }
+
     public Map<String, Object> getObjectMap() {
         return this.objectMap;
     }
