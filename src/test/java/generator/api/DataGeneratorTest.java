@@ -1,6 +1,7 @@
 package generator.api;
 
 import generator.model.Company;
+import generator.model.Demo;
 import generator.model.Person;
 import generator.randomizers.EvenValueRandomizer;
 import generator.randomizers.Randomizer;
@@ -12,6 +13,13 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 public class DataGeneratorTest {
+
+    @Test
+    public void testBigInteger() throws Exception {
+        final DataGenerator r = new DataGenerator.DataGeneratorBuilder().build();
+        Demo demo = r.random(Demo.class);
+        assertNotNull(demo);
+    }
 
     @Test
     public void testReplaceRandomizer() throws Exception {

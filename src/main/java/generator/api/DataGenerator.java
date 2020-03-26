@@ -25,6 +25,7 @@ public final class DataGenerator {
     static {
         randomizerMap.put("int", new IntegerRandomizer());
         randomizerMap.put("integer", new IntegerRandomizer());
+        randomizerMap.put("biginteger", new BigIntegerRandomizer());
         randomizerMap.put("string", new StringRandomizer());
         randomizerMap.put("long", new LongRandomizer());
         randomizerMap.put("double", new DoubleRandomizer());
